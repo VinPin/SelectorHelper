@@ -5,11 +5,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.ColorRes;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
-import android.support.annotation.StringDef;
 import android.support.v4.content.ContextCompat;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 
 /**
  * <pre>
@@ -18,6 +14,7 @@ import java.lang.annotation.RetentionPolicy;
  *     desc  : Shape帮助类
  * </pre>
  */
+@SuppressWarnings("unused")
 public class ShapeHelper {
 
     private int mShapeType;
@@ -29,7 +26,13 @@ public class ShapeHelper {
     private int mStrokeWidth;
     private int mStrokeColor;
 
-    private boolean isRadius = false;
+    private boolean isDashStroke = false;
+    private int strokeLineWidth;
+    private int strokeLineColor;
+    private int dashWidth;
+    private int dashGap;
+
+    private boolean isCornerRadius = false;
     private float topLeftRadius = 0;
     private float topRightRadius = 0;
     private float bottomLeftRadius = 0;
@@ -114,10 +117,34 @@ public class ShapeHelper {
     }
 
     /**
+     * 设置虚线边框
+     */
+    public ShapeHelper stroke(int width, @ColorRes int color, int dashWidth, int dashGap) {
+        isDashStroke = true;
+        strokeLineWidth = width;
+        strokeLineColor = ContextCompat.getColor(SelectorHelper.getContext(), color);
+        this.dashWidth = dashWidth;
+        this.dashGap = dashGap;
+        return this;
+    }
+
+    /**
+     * 设置虚线边框
+     */
+    public ShapeHelper stroke(int width, String colorString, int dashWidth, int dashGap) {
+        isDashStroke = true;
+        strokeLineWidth = width;
+        strokeLineColor = Color.parseColor(colorString);
+        this.dashWidth = dashWidth;
+        this.dashGap = dashGap;
+        return this;
+    }
+
+    /**
      * 设置圆角
      */
     public ShapeHelper cornerRadius(float radius) {
-        isRadius = true;
+        isCornerRadius = true;
         topLeftRadius = radius;
         topRightRadius = radius;
         bottomLeftRadius = radius;
@@ -129,7 +156,7 @@ public class ShapeHelper {
      * 设置左上圆角
      */
     public ShapeHelper tlRadius(float radius) {
-        isRadius = true;
+        isCornerRadius = true;
         topLeftRadius = radius;
         return this;
     }
@@ -138,7 +165,7 @@ public class ShapeHelper {
      * 设置右上圆角
      */
     public ShapeHelper trRadius(float radius) {
-        isRadius = true;
+        isCornerRadius = true;
         topRightRadius = radius;
         return this;
     }
@@ -147,7 +174,7 @@ public class ShapeHelper {
      * 设置左下圆角
      */
     public ShapeHelper blRadius(float radius) {
-        isRadius = true;
+        isCornerRadius = true;
         bottomLeftRadius = radius;
         return this;
     }
@@ -156,7 +183,7 @@ public class ShapeHelper {
      * 设置右下圆角
      */
     public ShapeHelper brRadius(float radius) {
-        isRadius = true;
+        isCornerRadius = true;
         bottomRightRadius = radius;
         return this;
     }
@@ -363,7 +390,10 @@ public class ShapeHelper {
         if (isStroke) {
             drawable.setStroke(mStrokeWidth, mStrokeColor);
         }
-        if (isRadius) {
+        if (isDashStroke) {
+            drawable.setStroke(strokeLineWidth, strokeLineColor, dashWidth, dashGap);
+        }
+        if (isCornerRadius) {
             float[] radii = {topLeftRadius, topLeftRadius,
                     topRightRadius, topRightRadius,
                     bottomRightRadius, bottomRightRadius,
@@ -371,6 +401,8 @@ public class ShapeHelper {
             drawable.setCornerRadii(radii);
         }
         if (isGradient) {
+            drawable.setGradientType(mGradientType);
+            drawable.setColors(gradientColors);
             switch (mGradientType) {
                 case GradientDrawable.LINEAR_GRADIENT:
                     // 线性渐变设置渐变方向
@@ -386,8 +418,6 @@ public class ShapeHelper {
                 default:
                     break;
             }
-            drawable.setGradientType(mGradientType);
-            drawable.setColors(gradientColors);
         }
         return drawable;
     }
