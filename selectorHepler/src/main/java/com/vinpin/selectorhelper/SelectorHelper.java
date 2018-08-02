@@ -1,5 +1,6 @@
 package com.vinpin.selectorhelper;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -13,10 +14,11 @@ import android.support.annotation.NonNull;
  */
 public class SelectorHelper {
 
+    @SuppressLint("StaticFieldLeak")
     private static Context mContext;
 
     private SelectorHelper() {
-
+        throw new UnsupportedOperationException("u can not create.");
     }
 
     /**
@@ -33,5 +35,26 @@ public class SelectorHelper {
             throw new ExceptionInInitializerError("请先在全局Application中调用 SelectorHelper.init() 初始化！");
         }
         return mContext;
+    }
+
+    /**
+     * 创建 ShapeSelector 对象
+     */
+    public static ShapeSelector shapeSelector() {
+        return ShapeSelector.getInstance();
+    }
+
+    /**
+     * 创建 ColorSelector 对象
+     */
+    public static ColorSelector colorSelector() {
+        return ColorSelector.getInstance();
+    }
+
+    /**
+     * 创建 DrawableSelector 对象
+     */
+    public static DrawableSelector drawableSelector() {
+        return DrawableSelector.getInstance();
     }
 }

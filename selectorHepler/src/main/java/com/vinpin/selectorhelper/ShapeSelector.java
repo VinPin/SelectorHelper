@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
  *     desc  : Shape类型选择器
  * </pre>
  */
+@SuppressWarnings("unused")
 public class ShapeSelector {
 
     private StateListDrawable mSelector;
@@ -86,9 +87,6 @@ public class ShapeSelector {
         return this;
     }
 
-    /**
-     * 默认的Shape，放在最后生效
-     */
     public ShapeSelector defaultShape(@NonNull GradientDrawable shape) {
         mSelector.addState(new int[]{}, shape);
         return this;

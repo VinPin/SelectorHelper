@@ -17,6 +17,7 @@ import java.util.HashMap;
  *     desc  : 颜色类型选择器
  * </pre>
  */
+@SuppressWarnings("unused")
 public class ColorSelector {
 
     private HashMap<Integer, Integer> hashMap;
@@ -26,7 +27,7 @@ public class ColorSelector {
         hashMap = new HashMap<>();
     }
 
-    public ColorSelector getInstance() {
+    public static ColorSelector getInstance() {
         return new ColorSelector();
     }
 
@@ -114,17 +115,11 @@ public class ColorSelector {
         return this;
     }
 
-    /**
-     * 默认的Color，放在最后生效
-     */
     public ColorSelector defaultColor(@ColorRes int color) {
         hashMap.put(0, ContextCompat.getColor(SelectorHelper.getContext(), color));
         return this;
     }
 
-    /**
-     * 默认的Color，放在最后生效
-     */
     public ColorSelector defaultColor(@NonNull String color) {
         hashMap.put(0, Color.parseColor(color));
         return this;
