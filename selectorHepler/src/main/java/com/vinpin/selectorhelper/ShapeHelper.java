@@ -188,6 +188,7 @@ public class ShapeHelper {
         return this;
     }
 
+
     /**
      * 默认线性渐变，默认方向上到下
      *
@@ -202,8 +203,20 @@ public class ShapeHelper {
      *
      * @param gradientColorsString 渐变颜色组，至少2个
      */
-    public ShapeHelper gradient(String... gradientColorsString) {
+    public ShapeHelper gradient(@NonNull String... gradientColorsString) {
         return gradient(GradientDrawable.LINEAR_GRADIENT, TOP_BOTTOM, gradientColorsString);
+    }
+
+    /**
+     * 默认线性渐变
+     *
+     * @param gradientOrientation 渐变方向
+     * @param startColorResId     开始渐变颜色组
+     * @param endColorResId       结束渐变颜色组
+     */
+    public ShapeHelper gradient(@GradientOrientation int gradientOrientation,
+                                @ColorRes int startColorResId, @ColorRes int endColorResId) {
+        return gradient(gradientOrientation, new int[]{startColorResId, endColorResId});
     }
 
     /**
@@ -212,7 +225,8 @@ public class ShapeHelper {
      * @param gradientOrientation 渐变方向
      * @param gradientColorsResId 渐变颜色组，至少2个
      */
-    public ShapeHelper gradient(@GradientOrientation int gradientOrientation, @ColorRes int... gradientColorsResId) {
+    public ShapeHelper gradient(@GradientOrientation int gradientOrientation,
+                                @ColorRes int... gradientColorsResId) {
         return gradient(GradientDrawable.LINEAR_GRADIENT, gradientOrientation, gradientColorsResId);
     }
 
@@ -222,7 +236,7 @@ public class ShapeHelper {
      * @param gradientOrientation  渐变方向
      * @param gradientColorsString 渐变颜色组，至少2个
      */
-    public ShapeHelper gradient(@GradientOrientation int gradientOrientation, String... gradientColorsString) {
+    public ShapeHelper gradient(@GradientOrientation int gradientOrientation, @NonNull String... gradientColorsString) {
         return gradient(GradientDrawable.LINEAR_GRADIENT, gradientOrientation, gradientColorsString);
     }
 
@@ -240,7 +254,7 @@ public class ShapeHelper {
      *
      * @param gradientColorsString 渐变颜色组，至少2个
      */
-    public ShapeHelper gradientSweep(String... gradientColorsString) {
+    public ShapeHelper gradientSweep(@NonNull String... gradientColorsString) {
         return gradient(GradientDrawable.SWEEP_GRADIENT, TOP_BOTTOM, gradientColorsString);
     }
 
@@ -251,7 +265,8 @@ public class ShapeHelper {
      * @param gradientOrientation 渐变方向
      * @param gradientColorsResId 渐变颜色组，至少2个
      */
-    private ShapeHelper gradient(int gradientType, @GradientOrientation int gradientOrientation, @ColorRes int... gradientColorsResId) {
+    private ShapeHelper gradient(int gradientType, @GradientOrientation int gradientOrientation,
+                                 @ColorRes int... gradientColorsResId) {
         isGradient = true;
         mGradientType = gradientType;
         mGradientOrientation = gradientOrientation;
@@ -273,7 +288,8 @@ public class ShapeHelper {
      * @param gradientOrientation  渐变方向
      * @param gradientColorsString 渐变颜色组，至少2个
      */
-    private ShapeHelper gradient(int gradientType, @GradientOrientation int gradientOrientation, String... gradientColorsString) {
+    private ShapeHelper gradient(int gradientType, @GradientOrientation int gradientOrientation,
+                                 @NonNull String... gradientColorsString) {
         isGradient = true;
         mGradientType = gradientType;
         mGradientOrientation = gradientOrientation;
@@ -304,7 +320,7 @@ public class ShapeHelper {
      * @param gradientRadius       辐射半径
      * @param gradientColorsString 渐变颜色组，至少2个
      */
-    public ShapeHelper gradientRadial(float gradientRadius, String... gradientColorsString) {
+    public ShapeHelper gradientRadial(float gradientRadius, @NonNull String... gradientColorsString) {
         return gradientRadial(0.5f, 0.5f, gradientRadius, gradientColorsString);
     }
 
@@ -316,7 +332,10 @@ public class ShapeHelper {
      * @param gradientRadius      辐射半径
      * @param gradientColorsResId 渐变颜色组，至少2个
      */
-    public ShapeHelper gradientRadial(float gradientCenterX, float gradientCenterY, float gradientRadius, @ColorRes int... gradientColorsResId) {
+    public ShapeHelper gradientRadial(float gradientCenterX, float gradientCenterY, float gradientRadius,
+                                      @ColorRes int... gradientColorsResId) {
+        isGradient = true;
+        mGradientType = GradientDrawable.RADIAL_GRADIENT;
         this.gradientCenterX = gradientCenterX;
         this.gradientCenterY = gradientCenterY;
         this.gradientRadius = gradientRadius;
@@ -339,7 +358,10 @@ public class ShapeHelper {
      * @param gradientRadius       辐射半径
      * @param gradientColorsString 渐变颜色组，至少2个
      */
-    public ShapeHelper gradientRadial(float gradientCenterX, float gradientCenterY, float gradientRadius, String... gradientColorsString) {
+    public ShapeHelper gradientRadial(float gradientCenterX, float gradientCenterY, float gradientRadius,
+                                      @NonNull String... gradientColorsString) {
+        isGradient = true;
+        mGradientType = GradientDrawable.RADIAL_GRADIENT;
         this.gradientCenterX = gradientCenterX;
         this.gradientCenterY = gradientCenterY;
         this.gradientRadius = gradientRadius;

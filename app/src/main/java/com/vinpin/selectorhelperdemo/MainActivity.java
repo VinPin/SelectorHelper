@@ -1,6 +1,7 @@
 package com.vinpin.selectorhelperdemo;
 
 import android.content.Context;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -25,7 +26,7 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private static final int COUNT = 7;
+    private static final int COUNT = 8;
     private RecyclerView recyclerView;
     private MainAdapter mAdapter;
 
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         public MainAdapter(Context context, List<Integer> datas) {
             super(context, datas);
+            // 矩形
             addItemViewDelegate(new ItemViewDelegate<Integer>() {
                 @Override
                 public int getItemViewLayoutId() {
@@ -68,18 +70,52 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public boolean isForViewType(Integer item, int position) {
-                    return item < COUNT;
+                    return item < 7;
                 }
 
                 @Override
                 public void convert(ViewHolder holder, Integer item, int position) {
-                    shapeHelperApiDemo(holder, item);
+                    shapeHelperApi(holder, item);
+                }
+            });
+            // 圆形
+            addItemViewDelegate(new ItemViewDelegate<Integer>() {
+                @Override
+                public int getItemViewLayoutId() {
+                    return R.layout.item_shape_oval_list;
+                }
+
+                @Override
+                public boolean isForViewType(Integer item, int position) {
+                    return item == 7;
+                }
+
+                @Override
+                public void convert(ViewHolder holder, Integer item, int position) {
+                    holder.setText(R.id.txt_1, "圆形-填充");
+                    holder.getView(R.id.txt_1).setBackgroundDrawable(
+                            ShapeHelper.getInstance()
+                                    .shape(GradientDrawable.OVAL)
+                                    .solidColor(R.color.colorAccent)
+                                    .create());
+                    holder.setText(R.id.txt_2, "扫描-渐变");
+                    holder.getView(R.id.txt_2).setBackgroundDrawable(
+                            ShapeHelper.getInstance()
+                                    .shape(GradientDrawable.OVAL)
+                                    .gradientSweep(R.color.colorAccent, R.color.colorPrimary)
+                                    .create());
+                    holder.setText(R.id.txt_3, "辐射-渐变");
+                    holder.getView(R.id.txt_3).setBackgroundDrawable(
+                            ShapeHelper.getInstance()
+                                    .shape(GradientDrawable.OVAL)
+                                    .gradientRadial(dp2px(30), new int[]{R.color.colorAccent, R.color.colorPrimary})
+                                    .create());
                 }
             });
         }
     }
 
-    private void shapeHelperApiDemo(ViewHolder holder, int item) {
+    private void shapeHelperApi(ViewHolder holder, int item) {
         switch (item) {
             case 0:
                 holder.setText(R.id.txt_1, "边角-填充");
@@ -152,18 +188,18 @@ public class MainActivity extends AppCompatActivity {
                                 .solidColor(R.color.colorAccent)
                                 .tlRadius(dp2px(10))
                                 .create());
-                holder.setText(R.id.txt_2, "右上边角");
+                holder.setText(R.id.txt_2, "左右上边角");
                 holder.getView(R.id.txt_2).setBackgroundDrawable(
                         ShapeHelper.getInstance()
                                 .solidColor(R.color.colorAccent)
+                                .tlRadius(dp2px(10))
                                 .trRadius(dp2px(10))
                                 .create());
-                holder.setText(R.id.txt_3, "左右上边角");
+                holder.setText(R.id.txt_3, "右上边角");
                 holder.getView(R.id.txt_3).setBackgroundDrawable(
                         ShapeHelper.getInstance()
                                 .solidColor(R.color.colorAccent)
                                 .trRadius(dp2px(10))
-                                .tlRadius(dp2px(10))
                                 .create());
                 break;
             case 4:
@@ -173,17 +209,17 @@ public class MainActivity extends AppCompatActivity {
                                 .solidColor(R.color.colorAccent)
                                 .blRadius(dp2px(10))
                                 .create());
-                holder.setText(R.id.txt_2, "右下边角");
+                holder.setText(R.id.txt_2, "左右下边角");
                 holder.getView(R.id.txt_2).setBackgroundDrawable(
                         ShapeHelper.getInstance()
                                 .solidColor(R.color.colorAccent)
+                                .blRadius(dp2px(10))
                                 .brRadius(dp2px(10))
                                 .create());
-                holder.setText(R.id.txt_3, "左右下边角");
+                holder.setText(R.id.txt_3, "右下边角");
                 holder.getView(R.id.txt_3).setBackgroundDrawable(
                         ShapeHelper.getInstance()
                                 .solidColor(R.color.colorAccent)
-                                .blRadius(dp2px(10))
                                 .brRadius(dp2px(10))
                                 .create());
                 break;
@@ -202,20 +238,20 @@ public class MainActivity extends AppCompatActivity {
                 holder.setText(R.id.txt_3, "下上渐变");
                 holder.getView(R.id.txt_3).setBackgroundDrawable(
                         ShapeHelper.getInstance()
-                                .gradient(ShapeHelper.BOTTOM_TOP, new int[]{R.color.colorAccent, R.color.colorPrimary})
+                                .gradient(ShapeHelper.BOTTOM_TOP, R.color.colorAccent, R.color.colorPrimary)
                                 .create());
                 break;
             case 6:
                 holder.setText(R.id.txt_1, "左右渐变");
                 holder.getView(R.id.txt_1).setBackgroundDrawable(
                         ShapeHelper.getInstance()
-                                .gradient(ShapeHelper.LEFT_RIGHT, new int[]{R.color.colorAccent, R.color.colorPrimary})
+                                .gradient(ShapeHelper.LEFT_RIGHT, R.color.colorAccent, R.color.colorPrimary)
                                 .create());
                 holder.setText(R.id.txt_2, "左右渐变边角");
                 holder.getView(R.id.txt_2).setBackgroundDrawable(
                         ShapeHelper.getInstance()
                                 .cornerRadius(dp2px(5))
-                                .gradient(ShapeHelper.LEFT_RIGHT, new int[]{R.color.colorAccent, R.color.colorPrimary})
+                                .gradient(ShapeHelper.LEFT_RIGHT, R.color.colorAccent, R.color.colorPrimary)
                                 .create());
                 holder.setText(R.id.txt_3, "右左渐变");
                 holder.getView(R.id.txt_3).setBackgroundDrawable(
