@@ -22,7 +22,7 @@ GradientDrawable drawable = ShapeHelper.getInstance()
            .create()
 ```
 每个方法名对应于shape的xml中的属性，每个方法都有重载的方法来满足你的需求。
-3.创建ShapeSelector
+3. 创建ShapeSelector
 ```
 StateListDrawable drawable = SelectorHelper.shapeSelector()
                                 .pressed(true, ShapeHelper.getInstance()
