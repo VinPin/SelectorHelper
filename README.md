@@ -22,6 +22,7 @@ GradientDrawable drawable = ShapeHelper.getInstance()
            .create()
 ```
 每个方法名对应于shape的xml中的属性，每个方法都有重载的方法来满足你的需求。
+
 3. 创建ShapeSelector
 ```
 StateListDrawable drawable = SelectorHelper.shapeSelector()
@@ -36,6 +37,7 @@ StateListDrawable drawable = SelectorHelper.shapeSelector()
                                 .create()
 ```
 每个方法名对应于selector的xml中item中的state值，每个方法都有重载的方法来满足你的需求。
+
 4. 创建ColorSelector
 ```
 ColorStateList drawable = SelectorHelper.colorSelector()
@@ -44,6 +46,7 @@ ColorStateList drawable = SelectorHelper.colorSelector()
                         .create()
 ```
 每个方法名对应于selector的xml中item中的state值，每个方法都有重载的方法来满足你的需求。
+
 5. 创建DrawableSelector
 ```
  StateListDrawable drawable = SelectorHelper.drawableSelector()
@@ -58,4 +61,5 @@ ColorStateList drawable = SelectorHelper.colorSelector()
                                 .create()
 ```
 每个方法名对应于selector的xml中item中的state值，每个方法都有重载的方法来满足你的需求。
-6. 创建Shape、ShapeSelector、ColorSelector、DrawableSelector的组合来满足你的需求。
+
+还可以创建Shape、ShapeSelector、ColorSelector、DrawableSelector的组合来满足你的需求。
