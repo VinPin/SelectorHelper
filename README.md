@@ -3,7 +3,7 @@ Android 代码生成Shape和Selector及各种组合，从此告别xml文件。
 
 ## 添加依赖
 ```
-
+implementation 'com.vinpin:selectorhelper:1.0.0'
 ```
 
 ## 如何使用
