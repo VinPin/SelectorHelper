@@ -5,6 +5,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.3'
+        classpath 'com.novoda:bintray-release:0.8.1'
     }
 }
 
@@ -12,6 +13,15 @@ allprojects {
     repositories {
         google()
         jcenter()
+    }
+
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet') //忽略javadoc错误
+        options {
+            encoding "UTF-8"
+            charSet 'UTF-8'
+            links "http://docs.oracle.com/javase/7/docs/api"
+        }
     }
 }
 
