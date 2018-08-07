@@ -1,6 +1,9 @@
 # SelectorHelper
 Android 代码生成Shape和Selector及各种组合，从此告别xml文件。
 
+![shape_selector.png](https://github.com/VinPin/SelectorHelper/blob/master/screenshot/shape_selector.png)
+![selector.png](https://github.com/VinPin/SelectorHelper/blob/master/screenshot/selector.png)
+
 ## 添加依赖
 ```
 implementation 'com.vinpin:selectorhelper:1.0.0'
