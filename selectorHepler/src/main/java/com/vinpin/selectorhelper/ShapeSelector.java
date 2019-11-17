@@ -2,7 +2,7 @@ package com.vinpin.selectorhelper;
 
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * <pre>
