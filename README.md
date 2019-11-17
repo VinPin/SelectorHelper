@@ -5,6 +5,9 @@ Android 代码生成Shape和Selector及各种组合，从此告别xml文件。
 
 ## 添加依赖
 ```
+// 支持androidx
+implementation 'com.vinpin:selectorhelper:2.0.0'
+// 不支持androidx
 implementation 'com.vinpin:selectorhelper:1.0.0'
 ```
 
