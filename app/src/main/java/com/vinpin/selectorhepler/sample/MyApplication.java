@@ -1,4 +1,4 @@
-package com.vinpin.selectorhelperdemo;
+package com.vinpin.selectorhepler.sample;
 
 import android.app.Application;
 

@@ -1,13 +1,15 @@
-package com.vinpin.selectorhelperdemo;
+package com.vinpin.selectorhepler.sample;
 
 import android.content.Context;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.widget.CheckBox;
 import android.widget.TextView;
 

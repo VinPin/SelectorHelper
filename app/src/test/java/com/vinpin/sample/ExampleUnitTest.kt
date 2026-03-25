@@ -1,4 +1,4 @@
-package com.vinpin.selectorhelperdemo
+package com.vinpin.sample
 
 import org.junit.Test
 
