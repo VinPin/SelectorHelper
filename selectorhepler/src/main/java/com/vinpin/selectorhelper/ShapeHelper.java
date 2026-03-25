@@ -1,7 +1,9 @@
 package com.vinpin.selectorhelper;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+
 import androidx.annotation.ColorRes;
 import androidx.annotation.IntDef;
 import androidx.annotation.NonNull;
@@ -90,6 +92,15 @@ public class ShapeHelper {
     /**
      * 设置实心背景颜色
      */
+    public ShapeHelper solidColor(@ColorRes int color, Context context) {
+        isSolidColor = true;
+        mSolidColor = ContextCompat.getColor(context, color);
+        return this;
+    }
+
+    /**
+     * 设置实心背景颜色
+     */
     public ShapeHelper solidColor(@NonNull String colorString) {
         isSolidColor = true;
         mSolidColor = Color.parseColor(colorString);
@@ -103,6 +114,16 @@ public class ShapeHelper {
         isStroke = true;
         mStrokeWidth = strokeWidth;
         mStrokeColor = ContextCompat.getColor(SelectorHelper.getContext(), strokeColor);
+        return this;
+    }
+
+    /**
+     * 设置边框
+     */
+    public ShapeHelper stroke(int strokeWidth, @ColorRes int strokeColor, Context context) {
+        isStroke = true;
+        mStrokeWidth = strokeWidth;
+        mStrokeColor = ContextCompat.getColor(context, strokeColor);
         return this;
     }
 
@@ -123,6 +144,18 @@ public class ShapeHelper {
         isDashStroke = true;
         strokeLineWidth = width;
         strokeLineColor = ContextCompat.getColor(SelectorHelper.getContext(), color);
+        this.dashWidth = dashWidth;
+        this.dashGap = dashGap;
+        return this;
+    }
+
+    /**
+     * 设置虚线边框
+     */
+    public ShapeHelper stroke(int width, @ColorRes int color, Context context, int dashWidth, int dashGap) {
+        isDashStroke = true;
+        strokeLineWidth = width;
+        strokeLineColor = ContextCompat.getColor(context, color);
         this.dashWidth = dashWidth;
         this.dashGap = dashGap;
         return this;

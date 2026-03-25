@@ -1,8 +1,10 @@
 package com.vinpin.selectorhelper;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+
 import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -38,6 +40,12 @@ public class ColorSelector {
         return this;
     }
 
+    public ColorSelector enabled(boolean enabled, @ColorRes int color, Context context) {
+        mStates.add(enabled ? android.R.attr.state_enabled : -android.R.attr.state_enabled);
+        mColors.add(ContextCompat.getColor(context, color));
+        return this;
+    }
+
     public ColorSelector enabled(boolean enabled, @NonNull String color) {
         mStates.add(enabled ? android.R.attr.state_enabled : -android.R.attr.state_enabled);
         mColors.add(Color.parseColor(color));
@@ -47,6 +55,12 @@ public class ColorSelector {
     public ColorSelector pressed(boolean pressed, @ColorRes int color) {
         mStates.add(pressed ? android.R.attr.state_pressed : -android.R.attr.state_pressed);
         mColors.add(ContextCompat.getColor(SelectorHelper.getContext(), color));
+        return this;
+    }
+
+    public ColorSelector pressed(boolean pressed, @ColorRes int color, Context context) {
+        mStates.add(pressed ? android.R.attr.state_pressed : -android.R.attr.state_pressed);
+        mColors.add(ContextCompat.getColor(context, color));
         return this;
     }
 
@@ -62,6 +76,12 @@ public class ColorSelector {
         return this;
     }
 
+    public ColorSelector selected(boolean selected, @ColorRes int color, Context context) {
+        mStates.add(selected ? android.R.attr.state_selected : -android.R.attr.state_selected);
+        mColors.add(ContextCompat.getColor(context, color));
+        return this;
+    }
+
     public ColorSelector selected(boolean selected, @NonNull String color) {
         mStates.add(selected ? android.R.attr.state_selected : -android.R.attr.state_selected);
         mColors.add(Color.parseColor(color));
@@ -71,6 +91,12 @@ public class ColorSelector {
     public ColorSelector checked(boolean checked, @ColorRes int color) {
         mStates.add(checked ? android.R.attr.state_checked : -android.R.attr.state_checked);
         mColors.add(ContextCompat.getColor(SelectorHelper.getContext(), color));
+        return this;
+    }
+
+    public ColorSelector checked(boolean checked, @ColorRes int color, Context context) {
+        mStates.add(checked ? android.R.attr.state_checked : -android.R.attr.state_checked);
+        mColors.add(ContextCompat.getColor(context, color));
         return this;
     }
 
@@ -86,6 +112,12 @@ public class ColorSelector {
         return this;
     }
 
+    public ColorSelector checkable(boolean checkable, @ColorRes int color, Context context) {
+        mStates.add(checkable ? android.R.attr.state_checkable : -android.R.attr.state_checkable);
+        mColors.add(ContextCompat.getColor(context, color));
+        return this;
+    }
+
     public ColorSelector checkable(boolean checkable, @NonNull String color) {
         mStates.add(checkable ? android.R.attr.state_checkable : -android.R.attr.state_checkable);
         mColors.add(Color.parseColor(color));
@@ -95,6 +127,12 @@ public class ColorSelector {
     public ColorSelector focused(boolean focused, @ColorRes int color) {
         mStates.add(focused ? android.R.attr.state_focused : -android.R.attr.state_focused);
         mColors.add(ContextCompat.getColor(SelectorHelper.getContext(), color));
+        return this;
+    }
+
+    public ColorSelector focused(boolean focused, @ColorRes int color, Context context) {
+        mStates.add(focused ? android.R.attr.state_focused : -android.R.attr.state_focused);
+        mColors.add(ContextCompat.getColor(context, color));
         return this;
     }
 
@@ -110,6 +148,12 @@ public class ColorSelector {
         return this;
     }
 
+    public ColorSelector windowFocused(boolean windowFocused, @ColorRes int color, Context context) {
+        mStates.add(windowFocused ? android.R.attr.state_window_focused : -android.R.attr.state_window_focused);
+        mColors.add(ContextCompat.getColor(context, color));
+        return this;
+    }
+
     public ColorSelector windowFocused(boolean windowFocused, @NonNull String color) {
         mStates.add(windowFocused ? android.R.attr.state_window_focused : -android.R.attr.state_window_focused);
         mColors.add(Color.parseColor(color));
@@ -122,6 +166,12 @@ public class ColorSelector {
         return this;
     }
 
+    public ColorSelector defaultColor(@ColorRes int color, Context context) {
+        mStates.add(0);
+        mColors.add(ContextCompat.getColor(context, color));
+        return this;
+    }
+
     public ColorSelector defaultColor(@NonNull String color) {
         mStates.add(0);
         mColors.add(Color.parseColor(color));
@@ -130,7 +180,7 @@ public class ColorSelector {
 
     public ColorStateList create() {
         int[][] states = null;
-        if (mStates != null && mStates.size() > 0) {
+        if (mStates != null && !mStates.isEmpty()) {
             states = new int[mStates.size()][];
             for (int i = 0; i < mStates.size(); i++) {
                 int state = mStates.get(i);
@@ -142,7 +192,7 @@ public class ColorSelector {
             }
         }
         int[] colors = null;
-        if (mColors != null && mColors.size() > 0) {
+        if (mColors != null && !mColors.isEmpty()) {
             colors = new int[mColors.size()];
             for (int i = 0; i < mColors.size(); i++) {
                 colors[i] = mColors.get(i);

@@ -1,7 +1,9 @@
 package com.vinpin.selectorhelper;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
+
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -37,6 +39,17 @@ public class DrawableSelector {
         return this;
     }
 
+    public DrawableSelector enabled(boolean enabled, @DrawableRes int drawableRes, Context context) {
+        if (enabled) {
+            mSelector.addState(new int[]{android.R.attr.state_enabled},
+                    ContextCompat.getDrawable(context, drawableRes));
+        } else {
+            mSelector.addState(new int[]{-android.R.attr.state_enabled},
+                    ContextCompat.getDrawable(context, drawableRes));
+        }
+        return this;
+    }
+
     public DrawableSelector enabled(boolean enabled, @NonNull Drawable drawable) {
         if (enabled) {
             mSelector.addState(new int[]{android.R.attr.state_enabled}, drawable);
@@ -53,6 +66,17 @@ public class DrawableSelector {
         } else {
             mSelector.addState(new int[]{-android.R.attr.state_pressed},
                     ContextCompat.getDrawable(SelectorHelper.getContext(), drawableRes));
+        }
+        return this;
+    }
+
+    public DrawableSelector pressed(boolean pressed, @DrawableRes int drawableRes, Context context) {
+        if (pressed) {
+            mSelector.addState(new int[]{android.R.attr.state_pressed},
+                    ContextCompat.getDrawable(context, drawableRes));
+        } else {
+            mSelector.addState(new int[]{-android.R.attr.state_pressed},
+                    ContextCompat.getDrawable(context, drawableRes));
         }
         return this;
     }
@@ -77,6 +101,17 @@ public class DrawableSelector {
         return this;
     }
 
+    public DrawableSelector selected(boolean selected, @DrawableRes int drawableRes, Context context) {
+        if (selected) {
+            mSelector.addState(new int[]{android.R.attr.state_selected},
+                    ContextCompat.getDrawable(context, drawableRes));
+        } else {
+            mSelector.addState(new int[]{-android.R.attr.state_selected},
+                    ContextCompat.getDrawable(context, drawableRes));
+        }
+        return this;
+    }
+
     public DrawableSelector selected(boolean selected, @NonNull Drawable drawable) {
         if (selected) {
             mSelector.addState(new int[]{android.R.attr.state_selected}, drawable);
@@ -93,6 +128,17 @@ public class DrawableSelector {
         } else {
             mSelector.addState(new int[]{-android.R.attr.state_checked},
                     ContextCompat.getDrawable(SelectorHelper.getContext(), drawableRes));
+        }
+        return this;
+    }
+
+    public DrawableSelector checked(boolean checked, @DrawableRes int drawableRes, Context context) {
+        if (checked) {
+            mSelector.addState(new int[]{android.R.attr.state_checked},
+                    ContextCompat.getDrawable(context, drawableRes));
+        } else {
+            mSelector.addState(new int[]{-android.R.attr.state_checked},
+                    ContextCompat.getDrawable(context, drawableRes));
         }
         return this;
     }
@@ -117,6 +163,17 @@ public class DrawableSelector {
         return this;
     }
 
+    public DrawableSelector checkable(boolean checkable, @DrawableRes int drawableRes, Context context) {
+        if (checkable) {
+            mSelector.addState(new int[]{android.R.attr.state_checkable},
+                    ContextCompat.getDrawable(context, drawableRes));
+        } else {
+            mSelector.addState(new int[]{-android.R.attr.state_checkable},
+                    ContextCompat.getDrawable(context, drawableRes));
+        }
+        return this;
+    }
+
     public DrawableSelector checkable(boolean checkable, @NonNull Drawable drawable) {
         if (checkable) {
             mSelector.addState(new int[]{android.R.attr.state_checkable}, drawable);
@@ -137,6 +194,17 @@ public class DrawableSelector {
         return this;
     }
 
+    public DrawableSelector focused(boolean focused, @DrawableRes int drawableRes, Context context) {
+        if (focused) {
+            mSelector.addState(new int[]{android.R.attr.state_focused},
+                    ContextCompat.getDrawable(context, drawableRes));
+        } else {
+            mSelector.addState(new int[]{-android.R.attr.state_focused},
+                    ContextCompat.getDrawable(context, drawableRes));
+        }
+        return this;
+    }
+
     public DrawableSelector focused(boolean focused, @NonNull Drawable drawable) {
         if (focused) {
             mSelector.addState(new int[]{android.R.attr.state_focused}, drawable);
@@ -153,6 +221,17 @@ public class DrawableSelector {
         } else {
             mSelector.addState(new int[]{-android.R.attr.state_window_focused},
                     ContextCompat.getDrawable(SelectorHelper.getContext(), drawableRes));
+        }
+        return this;
+    }
+
+    public DrawableSelector windowFocused(boolean windowFocused, @DrawableRes int drawableRes, Context context) {
+        if (windowFocused) {
+            mSelector.addState(new int[]{android.R.attr.state_window_focused},
+                    ContextCompat.getDrawable(context, drawableRes));
+        } else {
+            mSelector.addState(new int[]{-android.R.attr.state_window_focused},
+                    ContextCompat.getDrawable(context, drawableRes));
         }
         return this;
     }
